@@ -58,8 +58,11 @@ def Analyse_Composite_Material(temperatures):
         if(i>MAX_COMPOSITE_MATERIAL_TEMP or i<MIN_COMPOSITE_MATERIAL_TEMP):
            Threshold_Value_Cross+=1
            TotalTempCrossValue+=min(abs(MAX_COMPOSITE_MATERIAL_TEMP-i),abs(MIN_COMPOSITE_MATERIAL_TEMP-i))
-    
-    return (Threshold_Value_Cross,TotalTempCrossValue)
+    if(Threshold_Value_Cross>10 or TotalTempCrossValue>40):
+           return (2,"Material slightly damaged")
+    if(Threshold_Value_Cross>5 or TotalTempCrossValue>20):
+       return (1,"Material slightly damaged")
+    return (0,"Material is in good condition")
     
     
 
