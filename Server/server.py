@@ -13,8 +13,11 @@ app = Flask(__name__)
 # the associated function.
 
 # TEMP_BUFFER_SIZE=10
-IR_Material_Temp=[20,21,20,22,23,24,25,28,25,24,24,24,25,23,22,24,23,23,22,23]
-Thermostat_Freezer_Temp=[10,11,10,12,11,9,10,10,10,9,11,10,10,10,12,11,10,12,11,9]
+IR_Material_Temp=[20]
+Thermostat_Freezer_Temp=[10]
+
+location=[[18.5204,73.8567]]
+
 
 
 
@@ -31,18 +34,25 @@ def get_temperature_data():
 
     data=request.json
     # print(type(data))
-    type=data["type"]
+    typeofdata=data["type"]
     timestamp=data["timestamp"]
-    temperature=data["temperature"]
+    
 
-    if(type==1):
+    if(typeofdata==1):
+        temperature=data["temperature"]
         Thermostat_Freezer_Temp.append(temperature)
         # if(len(Thermostat_Freezer_Temp)>TEMP_BUFFER_SIZE):
         #    Thermostat_Freezer_Temp.pop(0)
-    elif(type==2):
+    elif(typeofdata==2):
+        temperature=data["temperature"]
         IR_Material_Temp.append(temperature)
         # if(len(IR_Material_Temp)>TEMP_BUFFER_SIZE):
         #     IR_Material_Temp.pop(0)
+    elif(typeofdata==3):
+        curr_location=data["location"]
+        location.append(curr_location)
+        # print(type(curr_location[0]))
+
     print(len(IR_Material_Temp),len(Thermostat_Freezer_Temp))
     return "hello"
     
@@ -50,12 +60,12 @@ def get_temperature_data():
 @app.route('/api/getData',methods=["GET"])
 def get_Analasys_of_Components():
     data={}
-    data["materialTemp"]=str(IR_Material_Temp[-1])
-    data["freezerTemp"]=str(Thermostat_Freezer_Temp[-1])
+    data["materialTemp"]=IR_Material_Temp[-1]
+    data["freezerTemp"]=Thermostat_Freezer_Temp[-1]
     data["materialSensorStatus"]=str(Check_For_Sensor_Correctness(IR_Material_Temp))
     data["sensorStatus"]=str(Check_Freezer_Correctness(Thermostat_Freezer_Temp))
-    data["location"]="Mumbai"
-    data["materialAnalysis"]=str(Analyse_Composite_Material(IR_Material_Temp))
+    data["location"]=location[-1]
+    data["materialAnalysis"]=Analyse_Composite_Material(IR_Material_Temp)
     data=json.dumps(data)
     print(data)
     return data
