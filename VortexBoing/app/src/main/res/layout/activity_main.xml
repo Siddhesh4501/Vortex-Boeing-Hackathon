@@ -16,7 +16,7 @@
             android:id="@+id/image"
             android:layout_width="0dp"
             android:layout_height="150dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="25dp"
             android:layout_weight="1"
             android:gravity="start|top"
             android:orientation="horizontal"
@@ -35,7 +35,7 @@
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="25dp"
             android:layout_weight="1"
             android:gravity="start"
             android:orientation="horizontal"
@@ -49,7 +49,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Material Status"
+                android:text="Material Sensor Status"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -66,7 +66,7 @@
             android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="25dp"
             android:layout_weight="1"
             android:gravity="bottom|center|start"
             android:orientation="horizontal"
@@ -95,7 +95,7 @@
             android:id="@+id/linearLayout3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="25dp"
             android:layout_weight="1"
             android:gravity="bottom|center|start"
             android:orientation="horizontal"
@@ -126,7 +126,7 @@
             android:id="@+id/linearLayout4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="25dp"
             android:layout_weight="1"
             android:gravity="bottom|center|start"
             android:orientation="horizontal"
@@ -155,10 +155,10 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/linearLayout7"
+            android:id="@+id/linearLayout6"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="50dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
             android:layout_weight="1"
             android:gravity="bottom|center|start"
             android:orientation="horizontal"
@@ -166,6 +166,38 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
+
+            <TextView
+                android:id="@+id/heading_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Status"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="TextView"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout7"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="25dp"
+            android:layout_weight="1"
+            android:gravity="bottom|center|start"
+            android:orientation="horizontal"
+            android:paddingTop="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
 
             <Button
                 android:id="@+id/track"

@@ -20,7 +20,7 @@ import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView materialStatus, sensorStatus, materialTemperature, freezerTemperature;
+    TextView materialStatus, sensorStatus, materialTemperature, freezerTemperature, status;
     Button track;
     JSONArray location;
     String SERVER_URL = "http://192.168.75.200:5000/api/getData";
@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
                         sensorStatus.setText(json.getString("sensorStatus"));
                         materialTemperature.setText(json.getString("materialTemp"));
                         freezerTemperature.setText(json.getString("freezerTemp"));
+                        status.setText((json.getJSONArray("materialAnalysis")).getString(1));
                         location = json.getJSONArray("location");
                     } catch (JSONException e) {
                         throw new RuntimeException(e);
@@ -56,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
         sensorStatus = findViewById(R.id.sensor_stat);
         materialTemperature = findViewById(R.id.material_temp);
         freezerTemperature = findViewById(R.id.freezer_temp);
+        status = findViewById(R.id.status);
 
         track = findViewById(R.id.track);
 
