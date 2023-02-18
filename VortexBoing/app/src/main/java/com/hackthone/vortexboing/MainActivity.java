@@ -10,14 +10,19 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.Serializable;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
 
     TextView materialStatus, sensorStatus, materialTemperature, freezerTemperature;
     Button track;
-    String location = "Pune";
+    JSONArray location;
     String SERVER_URL = "http://192.168.75.200:5000/api/getData";
 
     public void getData() {
@@ -30,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
                         sensorStatus.setText(json.getString("sensorStatus"));
                         materialTemperature.setText(json.getString("materialTemp"));
                         freezerTemperature.setText(json.getString("freezerTemp"));
-                        location = json.getString("location");
+                        location = json.getJSONArray("location");
                     } catch (JSONException e) {
                         throw new RuntimeException(e);
                     }
@@ -54,20 +59,20 @@ public class MainActivity extends AppCompatActivity {
 
         track = findViewById(R.id.track);
 
-        new android.os.Handler(Looper.getMainLooper()).postDelayed(
-                new Runnable() {
-                    public void run() {
-                        getData();
-                        Log.i("tag", "This'll run 300 milliseconds later");
-                    }
-                },
-        300);
+        new Timer().scheduleAtFixedRate(new TimerTask(){
+            @Override
+            public void run(){
+                getData();
+                Log.i("interval", "This function is called every 5 seconds.");
+            }
+        },0,5000);
+
 
         track.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent myIntent = new Intent(MainActivity.this, MapsActivity.class);
-                myIntent.putExtra("location", location);
+                myIntent.putExtra("location", location.toString());
                 MainActivity.this.startActivity(myIntent);
             }
         });

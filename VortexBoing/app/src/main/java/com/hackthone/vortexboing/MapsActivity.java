@@ -1,6 +1,8 @@
 package com.hackthone.vortexboing;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.fragment.app.FragmentActivity;
 
@@ -9,20 +11,67 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.hackthone.vortexboing.databinding.ActivityMapsBinding;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    private Marker marker;
     private ActivityMapsBinding binding;
+    JSONArray json = null;
+    String SERVER_URL = "http://192.168.75.200:5000/api/getData";
 
-    @Override
+    public void getData() {
+        try {
+            new AsyncFetch(new AsyncFetch.AsyncResponse() {
+                @Override
+                public void processFinish(JSONObject data) {
+                    try {
+                        json = data.getJSONArray("location");
+                        if(marker != null)
+                            marker.setPosition(new LatLng(json.getDouble(0), json.getDouble(1)));
+                    } catch (JSONException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }).execute(SERVER_URL);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         binding = ActivityMapsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        Intent intent = getIntent();
+        try {
+            json = new JSONArray(intent.getStringExtra("location"));
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+
+
+        new Timer().scheduleAtFixedRate(new TimerTask(){
+            @Override
+            public void run(){
+                getData();
+                Log.i("interval", "This function is called every 5 seconds.");
+            }
+        },0,5000);
+
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -44,8 +93,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        LatLng loc = null;
+        try {
+            loc = new LatLng(json.getDouble(0), json.getDouble(1));
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+        marker = mMap.addMarker(new MarkerOptions().position(loc).title("Vehicle Location"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(loc));
     }
 }
