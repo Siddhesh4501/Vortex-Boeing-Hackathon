@@ -13,8 +13,8 @@ import time
 SERVER_ADDRESS = 'http://192.168.204.200:5000/api/tempture'
 
 def cal_and_send_data(np_array):
-	mean = np_array.mean()
-	requests.post(SERVER_ADDRESS, json={"type": 2, "timestamp": int(time.time()), "temperature": mean})
+    mean = np_array.mean()
+    requests.post(SERVER_ADDRESS, json={"type": 2, "timestamp": int(time.time()), "temperature": mean})
 
 
 i2c = busio.I2C(board.SCL, board.SDA, frequency=400000) # setup I2C
