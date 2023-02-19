@@ -1,6 +1,7 @@
 # IOT - Time and Temperature Sensitive Material in Logistics
 
 <br>
+
 Our IoT model offers a real-time measurement of temperature data from the transportation system of composite materials. It meticulously analyzes the data and showcases a diverse range of parameters while providing a continuous, real-time monitoring of the composite materials.
 
 <br>
@@ -44,6 +45,7 @@ RaspberryPi |  Thermal Imaging Camera MLX90640
 ![RaspberryPi_MLX90640](https://user-images.githubusercontent.com/88923837/219882744-7ae4b980-c948-4b37-997c-0b53f144f9fd.png) | ![MLX90640](https://user-images.githubusercontent.com/88923837/219882748-c76e3768-259b-443b-8874-da40c82becc1.jpg)
 
 <br>
+
 ## Server implemented in Python Flask
 
 At the core of our IoT model lies our server, which receives data from NodeMcu and Raspberry Pi, processes it, and delivers the processed data to the application. Our server is built using Flask and is designed to fetch real-time data from sensors and deliver accurate and relevant information to the app. We have also developed various algorithms to validate sensor readings and measure the status of composite materials, ensuring the accuracy and reliability of the information provided to the users.
