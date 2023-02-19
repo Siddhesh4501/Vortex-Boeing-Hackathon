@@ -1,5 +1,15 @@
 <resources>
     <string name="app_name">VortexBoing</string>
+    <string name="server_url">http://192.168.75.200:5000</string>
     <string name="title_activity_maps">MapsActivity</string>
-    <string name="google_maps_key" translatable="false" templateMergeStrategy="preserve">AIzaSyB8Zp_xB5VjC-sgVqsPeLxOyxRnfvqCasE</string>
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyB8Zp_xB5VjC-sgVqsPeLxOyxRnfvqCasE</string>
+    <string name="title_activity_plane_login">PlaneLoginActivity</string>
+    <string name="prompt_email">Plane Id</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Get Details</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
 </resources>

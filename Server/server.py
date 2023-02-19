@@ -90,8 +90,9 @@ def get_temperature_data():
 
 @app.route('/api/getData',methods=["GET"])
 def get_Analasys_of_Components():
-    data=request.json
-    id=data["id"]
+    print(request.args)
+    print(request.args.get('id'))
+    id=request.args.get('id')
     if(id_plane_map.get(id)==None):
        return json.dumps({"message":"Error"})
     data={}

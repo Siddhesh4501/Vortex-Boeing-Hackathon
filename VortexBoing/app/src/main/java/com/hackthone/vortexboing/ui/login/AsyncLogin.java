@@ -1,4 +1,4 @@
-package com.hackthone.vortexboing;
+package com.hackthone.vortexboing.ui.login;
 
 import android.os.AsyncTask;
 
@@ -8,27 +8,42 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 
-public class AsyncFetch extends AsyncTask<String, Integer, JSONObject> {
+public class AsyncLogin extends AsyncTask<String, Integer, JSONObject> {
     public AsyncResponse delegate = null;
     public interface AsyncResponse {
         void processFinish(JSONObject output);
     }
-    public AsyncFetch(AsyncResponse delegate){
+    public AsyncLogin(AsyncResponse delegate){
         this.delegate = delegate;
     }
 
     @Override
     protected JSONObject doInBackground(String... strings) {
         try {
-            URL url = new URL(strings[0] + "?id=" + strings[1]);
+            String username = strings[1];
+            String password = strings[2];
+            String object = "{\"username\":\"" + username + "\", \"password\":\"" + password + "\"}";
+
+            URL url = new URL(strings[0]);
+
             HttpURLConnection con = null;
 
             con = (HttpURLConnection) url.openConnection();
-            con.setRequestMethod("GET");
-            con.setRequestProperty("User-Agent", "Mozilla/5.0");
+            con.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+            con.setRequestMethod("POST");
+            con.setConnectTimeout(5000);
+            con.setDoOutput(true);
+            con.setDoInput(true);
+
+            OutputStream os = con.getOutputStream();
+            os.write(object.getBytes(StandardCharsets.UTF_8));
+            os.close();
+
             int responseCode = con.getResponseCode();
             if (responseCode == HttpURLConnection.HTTP_OK) { // success
                 BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));

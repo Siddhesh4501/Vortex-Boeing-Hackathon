@@ -2,7 +2,6 @@ package com.hackthone.vortexboing;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -14,12 +13,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.Serializable;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static String id;
+    private int interval = 1000;
     TextView materialStatus, sensorStatus, materialTemperature, freezerTemperature, status;
     Button track;
     JSONArray location;
@@ -30,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
             new AsyncFetch(new AsyncFetch.AsyncResponse() {
                 @Override
                 public void processFinish(JSONObject json) {
+                    if(json == null)
+                        return;
                     try {
                         materialStatus.setText(json.getString("materialSensorStatus"));
                         sensorStatus.setText(json.getString("sensorStatus"));
@@ -41,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
                         throw new RuntimeException(e);
                     }
                 }
-            }).execute(SERVER_URL);
+            }).execute(SERVER_URL, id);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -52,6 +54,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        Intent intent = getIntent();
+        id = intent.getStringExtra("uuid");
 
         materialStatus = findViewById(R.id.material_stat);
         sensorStatus = findViewById(R.id.sensor_stat);
@@ -67,17 +73,16 @@ public class MainActivity extends AppCompatActivity {
                 getData();
                 Log.i("interval", "This function is called every 5 seconds.");
             }
-        },0,5000);
-
+        },0, interval);
 
         track.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent myIntent = new Intent(MainActivity.this, MapsActivity.class);
                 myIntent.putExtra("location", location.toString());
+                myIntent.putExtra("id", id.toString());
                 MainActivity.this.startActivity(myIntent);
             }
         });
-
     }
 }

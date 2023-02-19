@@ -24,6 +24,8 @@ import java.util.TimerTask;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
+    public static String id;
+    private int interval = 1000;
     private GoogleMap mMap;
     private Marker marker;
     private ActivityMapsBinding binding;
@@ -43,7 +45,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         throw new RuntimeException(e);
                     }
                 }
-            }).execute(SERVER_URL);
+            }).execute(SERVER_URL, id);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -58,6 +60,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         Intent intent = getIntent();
         try {
+            id = intent.getStringExtra("id");
             json = new JSONArray(intent.getStringExtra("location"));
         } catch (JSONException e) {
             throw new RuntimeException(e);
@@ -70,7 +73,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 getData();
                 Log.i("interval", "This function is called every 5 seconds.");
             }
-        },0,5000);
+        },0,interval);
 
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
