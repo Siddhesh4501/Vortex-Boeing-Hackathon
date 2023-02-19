@@ -3,8 +3,8 @@ import datetime
 import time
 import json
 import numpy as np
-IR_Material_Temp=[20,21,20,22,23,24,25,28,25,24,24,24,25,23,22,24,23,23,22,23]
-Thermostat_Freezer_Temp=[10,11,10,12,11,9,10,10,10,9,11,10,10,10,12,11,10,12,11,9,10]
+IR_Material_Temp=[20,21,20,22,23,24,25,28,25,24,24,24,25,23,22,24,23,23,22,23]*100
+Thermostat_Freezer_Temp=[10,11,10,12,11,9,10,10,10,9,11,10,10,10,12,11,10,12,11,9,10]*100
 len=len(IR_Material_Temp)
 location=[]
 START_LATITUDE=18.5204
