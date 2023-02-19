@@ -16,8 +16,8 @@ SERVER_IP="http://127.0.0.1:5000/api/temperature"
 def generateVirtualLocation():
     lat=np.linspace(START_LATITUDE,END_LATITUDE,len)
     lon=np.linspace(START_LONGITUDE,END_LONGITUDE,len)
+    location=[]
     for i in range(len):
-        location=[]
         location.append([lat[i],lon[i]])
     
     count=0
