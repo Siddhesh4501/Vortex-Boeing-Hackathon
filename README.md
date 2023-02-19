@@ -1,12 +1,12 @@
 # IOT - Time and Temperature Sensitive Material in Logistics
 
 <br>
-Out IOT model provides real-time measurement of temperature data from the composite materials transportation system, analyze it and shows various parameters and provide real time monitoring of the  composite material.
+Our IoT model offers a real-time measurement of temperature data from the transportation system of composite materials. It meticulously analyzes the data and showcases a diverse range of parameters while providing a continuous, real-time monitoring of the composite materials.
 
 
 ## NodeMcu and Temperature Sensor
 
-We used NodeMcu and temperature sensor for continuous monitoring of freezor temperature. We attached temperature sensor to freezor for real time monitoring of freezor temperature and intergrate it with NodeMcu for digital output.
+We have utilized NodeMcu and temperature sensors for the seamless monitoring of freezer temperature. By attaching the temperature sensors to the freezer, we have been able to achieve real-time monitoring of its temperature. Through integration with NodeMcu, we can obtain digital output for precise and continuous temperature monitoring.
 
 
 **Temperature sensor used:**
@@ -36,9 +36,7 @@ Sparkfun-senosr | NodeMcu
 
 
 ## Raspberry Pi Thermal Camera in Real Time with MLX90640
-For monitoring of composite material, it will not always possible to attach thermal sensor to its surface. We need to think of some innovative idea to measure temperature of composite material.
-
-We are here using Thermal camera to sense temperatue of material and integrated it with Raspberry Pi to provide real time temperature of composite material irrespictive of its state and reaction with surrounding.
+In scenarios where attaching a thermal sensor to the surface of composite materials is not always possible, we need to devise innovative solutions for temperature measurement. To overcome this challenge, we have implemented the use of a thermal camera to sense the temperature of the materials. By integrating the thermal camera with Raspberry Pi, we can provide continuous, real-time temperature monitoring of the composite materials, regardless of their state or reaction with their surroundings.
 
 RaspberryPi |  Thermal Imaging Camera MLX90640
 --- | ---
@@ -47,13 +45,18 @@ RaspberryPi |  Thermal Imaging Camera MLX90640
 
 ## Server implemented in Python Flask
 
-Our sever is the heart of our IOT model. We are getting data from NodeMcu and Raspberry Pi, processing it and delivering processed data to the app.
-Our server is implemented using flask and fetching real time data from  sensors and delivering processed data to the app.
-We design various algorithm for checking correctness of sensors and measuring status of composite material.
+At the core of our IoT model lies our server, which receives data from NodeMcu and Raspberry Pi, processes it, and delivers the processed data to the application. Our server is built using Flask and is designed to fetch real-time data from sensors and deliver accurate and relevant information to the app. We have also developed various algorithms to validate sensor readings and measure the status of composite materials, ensuring the accuracy and reliability of the information provided to the users.
+
 
 
 ## VortexBoing App
 
-App is the front face of our IOT model. It fetches data from the server and gives user real time experience for monitoring of its material. It is implemented in Java and also provides tracking option for real time position tracking of your goods. It showcase user various paramater such as material temperature, freezor temperature, current condition of material, etc.
+Our IoT model boasts a sophisticated mobile application that serves as the front-end of our system, providing users with a real-time experience for monitoring their composite materials. The application, built using Java, fetches real-time data from the server, enabling users to keep a close eye on their materials at all times. The application also features a tracking option for real-time position tracking of goods, making it easier for users to keep track of their materials' whereabouts. To access these features, users can log in to the application using their plain ID and password, which ensures secure and private monitoring of their materials. In addition, the application showcases various critical parameters, including material temperature, freezer temperature, current condition of the material, and more, delivering comprehensive insights and relevant information to the users.
+
+
+Login page | Monitoring display
+--- | ---
+![monitor-display](https://user-images.githubusercontent.com/88923837/219923440-271fb8e7-8f93-477c-aeeb-7495a91f6330.jpeg) | ![monitor-display](https://user-images.githubusercontent.com/88923837/219923440-271fb8e7-8f93-477c-aeeb-7495a91f6330.jpeg)
+
 
 
