@@ -1,9 +1,10 @@
 # Importing flask module in the project is mandatory
 # An object of Flask class is our WSGI application.
-from flask import Flask
+from flask import Flask,make_response
 from flask import request
 from stats import *
 import json
+import uuid
 # Flask constructor takes the name of
 # current module (__name__) as argument.
 app = Flask(__name__)
@@ -18,14 +19,44 @@ Thermostat_Freezer_Temp=[10]
 
 location=[[18.5204,73.8567]]
 
+PLANES={
+    "Boing-737":{
+        "password":"Boing-737",
+        "start-lat":18.5204,
+        "start-lon":73.8567,
+        "end-lat":19.0760,
+        "end-lon":72.8777
+    }
+}
 
-
-
+id_plane_map={}
 
 @app.route('/')
 # ‘/’ URL is bound with hello_world() function.
 def hello_world():
 	return 'Hello World'
+
+@app.route('/api/login',methods=["POST"])
+def login():
+    data=request.json
+    username=data["username"]
+    password=data["password"]
+    plane_data=PLANES.get(username)
+    if(plane_data==None):
+        data=json.dumps({"message":"Invalid data"})
+        return make_response(data,400)
+    plane_info=PLANES[username]
+    if(plane_info["password"]!=password):
+        data=json.dumps({"message":"Invalid data"})
+        return make_response(data,400)
+    id=str(uuid.uuid1())
+    id_plane_map[id]=username
+    print(id_plane_map)
+    data=json.dumps({"message":"Logged In","uuid":id})
+    return make_response(data,200)
+    
+
+    
 
 
 
@@ -59,6 +90,10 @@ def get_temperature_data():
 
 @app.route('/api/getData',methods=["GET"])
 def get_Analasys_of_Components():
+    data=request.json
+    id=data["id"]
+    if(id_plane_map.get(id)==None):
+       return json.dumps({"message":"Error"})
     data={}
     data["materialTemp"]=IR_Material_Temp[-1]
     data["freezerTemp"]=Thermostat_Freezer_Temp[-1]

@@ -17,36 +17,35 @@ def generateVirtualLocation():
     lat=np.linspace(START_LATITUDE,END_LATITUDE,len)
     lon=np.linspace(START_LONGITUDE,END_LONGITUDE,len)
     for i in range(len):
+        location=[]
         location.append([lat[i],lon[i]])
+    
+    count=0
+    while(True):
+        count=count%len
+        data={}
+        data["type"]=1
+        data["timestamp"]=datetime.datetime.now().strftime("%s")
+        data["temperature"]=Thermostat_Freezer_Temp[count]
+        resp=requests.post(SERVER_IP,json=data)
+        print(resp)
+        data={}
+        data["type"]=2
+        data["timestamp"]=datetime.datetime.now().strftime("%s")
+        data["temperature"]=IR_Material_Temp[count]
+        resp=requests.post(SERVER_IP,json=data)
+        print(resp)
+        data["type"]=3
+        data["timestamp"]=datetime.datetime.now().strftime("%s")
+        data["location"]=location[count]
+        resp=requests.post(SERVER_IP,json=data)
+        print(resp)
 
+        time.sleep(1)
+
+        count+=1
 
 
 
 
 generateVirtualLocation()
-count=0
-while(True):
-    count=count%len
-    data={}
-    data["type"]=1
-    data["timestamp"]=datetime.datetime.now().strftime("%s")
-    data["temperature"]=Thermostat_Freezer_Temp[count]
-    resp=requests.post(SERVER_IP,json=data)
-    print(resp)
-    data={}
-    data["type"]=2
-    data["timestamp"]=datetime.datetime.now().strftime("%s")
-    data["temperature"]=IR_Material_Temp[count]
-    resp=requests.post(SERVER_IP,json=data)
-    print(resp)
-    data["type"]=3
-    data["timestamp"]=datetime.datetime.now().strftime("%s")
-    data["location"]=location[count]
-    resp=requests.post(SERVER_IP,json=data)
-    print(resp)
-
-    time.sleep(1)
-
-    count+=1
-
-
