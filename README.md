@@ -56,5 +56,11 @@ Our IoT model boasts a sophisticated mobile application that serves as the front
 
 Login page | Monitoring display
 --- | ---
-![monitor-display](https://user-images.githubusercontent.com/88923837/219923440-271fb8e7-8f93-477c-aeeb-7495a91f6330.jpeg) | ![monitor-display](https://user-images.githubusercontent.com/88923837/219923440-271fb8e7-8f93-477c-aeeb-7495a91f6330.jpeg)
+![WhatsApp Image 2023-02-19 at 1 14 14 PM](https://user-images.githubusercontent.com/88923837/219935789-7e4ba742-ed6b-47df-a74e-1637cd49ad93.jpeg) | ![monitor-display](https://user-images.githubusercontent.com/88923837/219923440-271fb8e7-8f93-477c-aeeb-7495a91f6330.jpeg)
+
+
+## Location Tracking
+
+https://user-images.githubusercontent.com/88923837/219935847-527cfc29-1cbf-49ad-b300-b3e42b3ac585.mp4
+
 
