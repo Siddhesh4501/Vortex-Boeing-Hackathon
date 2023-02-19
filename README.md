@@ -3,11 +3,11 @@
 <br>
 Our IoT model offers a real-time measurement of temperature data from the transportation system of composite materials. It meticulously analyzes the data and showcases a diverse range of parameters while providing a continuous, real-time monitoring of the composite materials.
 
+<br>
 
 ## NodeMcu and Temperature Sensor
 
 We have utilized NodeMcu and temperature sensors for the seamless monitoring of freezer temperature. By attaching the temperature sensors to the freezer, we have been able to achieve real-time monitoring of its temperature. Through integration with NodeMcu, we can obtain digital output for precise and continuous temperature monitoring.
-
 
 **Temperature sensor used:**
 SparkFun High Precision Temperature Sensor - TMP117 (Qwiic)
@@ -34,6 +34,7 @@ Sparkfun-senosr | NodeMcu
 
 
 
+<br>
 
 ## Raspberry Pi Thermal Camera in Real Time with MLX90640
 In scenarios where attaching a thermal sensor to the surface of composite materials is not always possible, we need to devise innovative solutions for temperature measurement. To overcome this challenge, we have implemented the use of a thermal camera to sense the temperature of the materials. By integrating the thermal camera with Raspberry Pi, we can provide continuous, real-time temperature monitoring of the composite materials, regardless of their state or reaction with their surroundings.
@@ -42,12 +43,13 @@ RaspberryPi |  Thermal Imaging Camera MLX90640
 --- | ---
 ![RaspberryPi_MLX90640](https://user-images.githubusercontent.com/88923837/219882744-7ae4b980-c948-4b37-997c-0b53f144f9fd.png) | ![MLX90640](https://user-images.githubusercontent.com/88923837/219882748-c76e3768-259b-443b-8874-da40c82becc1.jpg)
 
-
+<br>
 ## Server implemented in Python Flask
 
 At the core of our IoT model lies our server, which receives data from NodeMcu and Raspberry Pi, processes it, and delivers the processed data to the application. Our server is built using Flask and is designed to fetch real-time data from sensors and deliver accurate and relevant information to the app. We have also developed various algorithms to validate sensor readings and measure the status of composite materials, ensuring the accuracy and reliability of the information provided to the users.
 
 
+<br>
 
 ## VortexBoing App
 
@@ -62,5 +64,11 @@ Login page | Monitoring display
 ## Location Tracking
 
 https://user-images.githubusercontent.com/88923837/219935847-527cfc29-1cbf-49ad-b300-b3e42b3ac585.mp4
+
+<br>
+
+## Team Code-Breakers
+1. [Siddhesh Pawar](https://github.com/Siddhesh4501)
+2. [Shitij Agrawal](https://github.com/mr-shitij)
 
 
